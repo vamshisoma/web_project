@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+    stages {
+        stage ('Build and Package'){
+            steps{
+
+                build job : 'Pipeline_Build_archiveArtifacts'
+
+           }
+        }
+        
+
+        stage ('Deploy Build in Staging Area'){
+            steps{
+
+                build job : 'Pipeline_Deploy_Stage_Area'
+
+           }
+        }
+
+        stage ('Deploy to Production'){
+            steps{
+                timeout (time: 4, unit:'DAYS'){
+                   input message: 'Approve PRODUCTION Manager?'
+               }
+               
+                build job : 'Pipeline_Deploy_Production_Area'
+            }
+
+            post{
+                success{
+                    echo 'Deployment on PRODUCTION is Successful !!!!!!!!!!'
+               }
+
+                failure{
+                   echo 'Deployement Failure on PRODUCTION !!!!!!!!!!'
+               }
+           }
+        }
+    }
+}

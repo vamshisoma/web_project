@@ -1,0 +1,35 @@
+pipeline {
+
+agent any
+
+stages{
+
+    stage('Build and package') {
+          steps{
+                
+		build job : 'Batch1'
+              }
+
+         }
+	 
+	 stage('Deploy to QA') {
+          steps{
+                
+		build job : 'Batch_2'
+              }
+
+         }
+	 
+	 
+	 stage('Deploy to _Prod e') {
+          steps{
+                
+		build job : 'Batch_3'
+              }
+
+         }
+
+}
+ 
+
+}

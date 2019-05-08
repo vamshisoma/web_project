@@ -1,0 +1,7 @@
+node{
+
+stage('Building'){
+powershell  'mvn clean package'
+}
+
+}
