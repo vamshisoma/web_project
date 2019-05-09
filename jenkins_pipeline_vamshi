@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build'){
             steps {
-              powershell mnvn 'clean package'
+              powershell mvn 'clean package'
             }
         }
     }
