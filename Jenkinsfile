@@ -18,7 +18,7 @@ pipeline {
                 }
             }
         }
-
+/*sanjay*/
         stage ('Deploy Build in Staging Area'){
             steps{
 
